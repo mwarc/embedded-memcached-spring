@@ -1,0 +1,114 @@
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'pl.allegro.tech.build.axion-release' version '1.2.2'
+    id 'maven'
+    id 'signing'
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+scmVersion {
+    tag {
+        prefix = project.name
+    }
+}
+project.version = scmVersion.version
+project.group = 'com.github.mwarc'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.thimbleware.jmemcached:jmemcached-core:1.0.0'
+    compile 'com.google.guava:guava:18.0'
+    compile 'org.springframework:spring-core:4.1.5.RELEASE'
+    compile 'org.springframework:spring-test:4.1.5.RELEASE'
+    compile 'org.springframework:spring-context:4.1.5.RELEASE'
+    compile 'ch.qos.logback:logback-classic:1.1.2'
+    compile 'ch.qos.logback:logback-core:1.1.2'
+    testCompile 'org.springframework:spring-test:4.1.5.RELEASE'
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.2'
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    testCompile 'org.spockframework:spock-spring:1.0-groovy-2.4'
+    testCompile 'junit:junit:4.11'
+    testCompile 'com.jayway.awaitility:awaitility:1.6.3'
+    testCompile 'net.spy:spymemcached:2.11.6'
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+ext {
+    ossrhUsername = project.ext.has('ossrhUsername') ? project.ext.ossrhUsername : ''
+    ossrhPassword = project.ext.has('ossrhPassword') ? project.ext.ossrhPassword : ''
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+def isReleaseBuild() {
+    !project.version.toString().contains('SNAPSHOT')
+}
+
+signing {
+    required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+            pom.project {
+                name 'Embedded memcached spring'
+                packaging 'jar'
+                description 'Spring Test framework to develop with memcached'
+                url 'https://github.com/mwarc/embedded-memcached-spring'
+                scm {
+                    connection 'scm:git:https://github.com/mwarc/embedded-memcached-spring.git'
+                    developerConnection 'scm:git:https://github.com/mwarc/embedded-memcached-spring.git'
+                    url 'https://github.com/mwarc/embedded-memcached-spring'
+                }
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'mwarc'
+                        name 'Marcin Warczyglowa'
+                        email 'mwarc1948@gmail.com'
+                    }
+                    developer {
+                        id 'dtechner'
+                        name 'Dawid Techner'
+                        email 'dtechner@kofeina.net'
+                    }
+                }
+            }
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
