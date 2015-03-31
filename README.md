@@ -25,14 +25,14 @@ In your pom.xml, you have to add embedded-memcached-spring maven dependency:
     <dependency>
         <groupId>com.github.mwarc</groupId>
         <artifactId>embedded-memcached-spring</artifactId>
-        <version>0.1.0</version>
+        <version>0.1.2</version>
     </dependency>
 
 
 or when you use gradle add to build.gradle:
 
     dependencies {
-        compile 'com.github.mwarc:embedded-memcached-spring:0.1.0'
+        compile 'com.github.mwarc:embedded-memcached-spring:0.1.2'
     }
 
 ## Use cases
