@@ -1,5 +1,7 @@
 # embedded-memcached-spring
 
+[![Build Status](https://travis-ci.org/mwarc/embedded-memcached-spring.svg?branch=master)](https://travis-ci.org/mwarc/embedded-memcached-spring)
+
 ## Overview
 
 The Spring TestContext Framework provides annotation-driven unit and integration testing support.
