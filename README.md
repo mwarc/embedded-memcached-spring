@@ -1,6 +1,7 @@
 # embedded-memcached-spring
 
 [![Build Status](https://travis-ci.org/mwarc/embedded-memcached-spring.svg?branch=master)](https://travis-ci.org/mwarc/embedded-memcached-spring)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.mwarc/embedded-memcached-spring/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.mwarc/embedded-memcached-spring)
 
 ## Overview
 
