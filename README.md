@@ -55,6 +55,7 @@ public class EmbeddedMemcachedTest {
     public void shouldNotFindValueInMemcached() {
         ...
     }
+}
 ```
 
 ### Spock:
