@@ -11,7 +11,7 @@ embedded-memcached-spring provides a way to use jmemcache-daemon with Spring Tes
 
 ## Annotation
 
-The magic is in JMemcachedTestExecutionListener class (default listener) which implments TestExecutionListener. This listener find EmbeddedMemcached annotation:
+The magic is in JMemcachedTestExecutionListener class (default listener) which implements TestExecutionListener. This listener find EmbeddedMemcached annotation:
 
     @EmbeddedMemcached: annotation to start an embedded memcached server
     
