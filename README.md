@@ -11,7 +11,7 @@ embedded-memcached-spring provides a way to use jmemcache-daemon with Spring Tes
 
 ## Annotation
 
-The magic is in JMemcachedTestExecutionListener class (default listener) which implements TestExecutionListener. This listener find EmbeddedMemcached annotation:
+The magic is in JMemcachedTestExecutionListener class (default listener) which implements TestExecutionListener. This listener find @EmbeddedMemcached annotation:
 
     @EmbeddedMemcached: annotation to start an embedded memcached server
     
@@ -32,7 +32,7 @@ In your pom.xml, you have to add embedded-memcached-spring maven dependency:
 or when you use gradle add to build.gradle:
 
     dependencies {
-        compile 'com.github.mwarc:embedded-memcached-spring:0.1.3'
+        testCompile 'com.github.mwarc:embedded-memcached-spring:0.1.3'
     }
 
 ## Use cases
