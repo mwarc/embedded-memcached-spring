@@ -78,7 +78,7 @@ uploadArchives {
             pom.project {
                 name 'Embedded memcached spring'
                 packaging 'jar'
-                description 'Spring Test framework to develop with memcached'
+                description 'embedded-memcached-spring provides a way to use jmemcache-daemon with Spring TestContext Framework'
                 url 'https://github.com/mwarc/embedded-memcached-spring'
                 scm {
                     connection 'scm:git:https://github.com/mwarc/embedded-memcached-spring.git'

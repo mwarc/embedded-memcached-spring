@@ -3,8 +3,6 @@ package com.github.mwarc.embeddedmemcached
 import net.spy.memcached.MemcachedClient
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.TestExecutionListeners
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener
 import spock.lang.Specification
 
 import static com.jayway.awaitility.Awaitility.await
@@ -12,9 +10,6 @@ import static com.jayway.awaitility.Duration.FIVE_SECONDS
 import static com.jayway.awaitility.Duration.ONE_SECOND
 
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
-@TestExecutionListeners([
-        EmbeddedMemcachedDiIntegrationTestExecutionListener,
-        DependencyInjectionTestExecutionListener])
 @EmbeddedMemcached
 class EmbeddedMemcachedSpec extends Specification {
 

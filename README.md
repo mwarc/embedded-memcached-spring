@@ -7,11 +7,11 @@
 
 The Spring TestContext Framework provides annotation-driven unit and integration testing support.
 
-embedded-memcached-spring provides a way to use Jmemcache-daemon with Spring TestContext Framework.
+embedded-memcached-spring provides a way to use jmemcache-daemon with Spring TestContext Framework.
 
 ## Annotation
 
-The magic is in EmbeddedMemcachedDiIntegrationTestExecutionListener class which implments TestExecutionListener. This listener find EmbeddedMemcached annotation:
+The magic is in JMemcachedTestExecutionListener class (default listener) which implments TestExecutionListener. This listener find EmbeddedMemcached annotation:
 
     @EmbeddedMemcached: annotation to start an embedded memcached server
     
@@ -25,28 +25,29 @@ In your pom.xml, you have to add embedded-memcached-spring maven dependency:
     <dependency>
         <groupId>com.github.mwarc</groupId>
         <artifactId>embedded-memcached-spring</artifactId>
-        <version>0.1.2</version>
+        <version>0.1.3</version>
     </dependency>
 
 
 or when you use gradle add to build.gradle:
 
     dependencies {
-        compile 'com.github.mwarc:embedded-memcached-spring:0.1.2'
+        compile 'com.github.mwarc:embedded-memcached-spring:0.1.3'
     }
 
 ## Use cases
 
-The following snippet use basic Spring configuration and @EmbeddedMemcached. 
-EmbeddedMemcachedDiIntegrationTestExecutionListener find @EmbeddedMemcached annotation 
-and try to start an embedded memcached server with default configuration.
-
 ### JUnit:
+
+The following snippet use basic Spring configuration and @EmbeddedMemcached. 
+JMemcachedTestExecutionListener find @EmbeddedMemcached annotation 
+and try to start an embedded memcached server (host 127.0.0.1 and port 11214).
+
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 @TestExecutionListeners({
-    EmbeddedMemcachedDiIntegrationTestExecutionListener.class,
+    JMemcachedTestExecutionListener.class,
     DependencyInjectionTestExecutionListener.class})
 @EmbeddedMemcached(host = "127.0.0.1", port = 11214)
 public class EmbeddedMemcachedTest {
@@ -57,11 +58,13 @@ public class EmbeddedMemcachedTest {
 ```
 
 ### Spock:
+
+The following snippet use basic Spring configuration and @EmbeddedMemcached. 
+Default listener JMemcachedTestExecutionListener find @EmbeddedMemcached annotation 
+and try to start an embedded memcached server with default configuration.
+
 ```groovy
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
-@TestExecutionListeners([
-        EmbeddedMemcachedDiIntegrationTestExecutionListener,
-        DependencyInjectionTestExecutionListener])
 @EmbeddedMemcached
 class EmbeddedMemcachedSpec extends Specification {
     def "should save value and retrieve it from memcached"() {

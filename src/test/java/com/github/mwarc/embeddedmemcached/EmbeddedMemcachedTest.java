@@ -20,9 +20,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
-@TestExecutionListeners({
-    EmbeddedMemcachedDiIntegrationTestExecutionListener.class,
-    DependencyInjectionTestExecutionListener.class})
+@TestExecutionListeners({JMemcachedTestExecutionListener.class, DependencyInjectionTestExecutionListener.class})
 @EmbeddedMemcached(host = "127.0.0.1", port = 11214)
 public class EmbeddedMemcachedTest {
 

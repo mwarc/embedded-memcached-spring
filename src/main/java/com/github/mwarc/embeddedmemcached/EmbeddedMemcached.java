@@ -1,5 +1,8 @@
 package com.github.mwarc.embeddedmemcached;
 
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
@@ -11,6 +14,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Inherited
 @Documented
+@TestExecutionListeners({JMemcachedTestExecutionListener.class, DependencyInjectionTestExecutionListener.class})
 public @interface EmbeddedMemcached {
 
     String host() default "127.0.0.1";

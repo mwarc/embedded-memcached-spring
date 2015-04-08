@@ -5,9 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-public class EmbeddedMemcachedDiIntegrationTestExecutionListener extends AbstractEmbeddedMemcachedTestExecutionListener {
+public class JMemcachedTestExecutionListener extends AbstractEmbeddedMemcachedTestExecutionListener {
 
-    private static final Logger logger = LoggerFactory.getLogger(EmbeddedMemcachedDiIntegrationTestExecutionListener.class);
+    private static final Logger logger = LoggerFactory.getLogger(JMemcachedTestExecutionListener.class);
+
+    public JMemcachedTestExecutionListener() {
+        super(new JMemcachedServer());
+    }
 
     @Override
     public void beforeTestClass(TestContext testContext) {

@@ -2,8 +2,6 @@ package com.github.mwarc.embeddedmemcached;
 
 import com.google.common.base.Preconditions;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.support.AbstractTestExecutionListener;
@@ -13,8 +11,8 @@ public class AbstractEmbeddedMemcachedTestExecutionListener extends AbstractTest
     private static boolean initialized;
     private MemcachedServer server;
 
-    public AbstractEmbeddedMemcachedTestExecutionListener() {
-        this.server = new JMemcachedServer();
+    public AbstractEmbeddedMemcachedTestExecutionListener(MemcachedServer server) {
+        this.server = server;
     }
 
     protected void startServer(TestContext testContext) {
