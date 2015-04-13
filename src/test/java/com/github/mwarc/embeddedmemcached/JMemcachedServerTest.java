@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 @TestExecutionListeners({JMemcachedTestExecutionListener.class, DependencyInjectionTestExecutionListener.class})
 @EmbeddedMemcached(host = "127.0.0.1", port = 11214)
-public class EmbeddedMemcachedTest {
+public class JMemcachedServerTest {
 
     private final String key = "someKey";
     private final String value = "someValue";

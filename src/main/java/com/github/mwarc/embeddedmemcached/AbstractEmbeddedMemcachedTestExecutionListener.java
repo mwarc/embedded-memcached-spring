@@ -18,7 +18,7 @@ public class AbstractEmbeddedMemcachedTestExecutionListener extends AbstractTest
     protected void startServer(TestContext testContext) {
         EmbeddedMemcached embeddedMemcached = Preconditions.checkNotNull(
             AnnotationUtils.findAnnotation(testContext.getTestClass(), EmbeddedMemcached.class),
-            "EmbeddedMemcachedDIIntegrationTestExecutionListener must be used with @EmbeddedMemcached on "
+            "EmbeddedMemcachedTestExecutionListener must be used with @EmbeddedMemcached on "
                     + testContext.getTestClass()
         );
         String host = Preconditions.checkNotNull(embeddedMemcached.host(), "@EmbeddedMemcached host must not be null");

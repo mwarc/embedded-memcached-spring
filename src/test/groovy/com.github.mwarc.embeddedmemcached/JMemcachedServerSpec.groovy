@@ -11,7 +11,7 @@ import static com.jayway.awaitility.Duration.ONE_SECOND
 
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 @EmbeddedMemcached
-class EmbeddedMemcachedSpec extends Specification {
+class JMemcachedServerSpec extends Specification {
 
     def key = "someKey"
     def value = "someValue"

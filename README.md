@@ -25,14 +25,14 @@ In your pom.xml, you have to add embedded-memcached-spring maven dependency:
     <dependency>
         <groupId>com.github.mwarc</groupId>
         <artifactId>embedded-memcached-spring</artifactId>
-        <version>0.1.3</version>
+        <version>0.1.4</version>
     </dependency>
 
 
 or when you use gradle add to build.gradle:
 
     dependencies {
-        testCompile 'com.github.mwarc:embedded-memcached-spring:0.1.3'
+        testCompile 'com.github.mwarc:embedded-memcached-spring:0.1.4'
     }
 
 ## Use cases
@@ -41,7 +41,7 @@ or when you use gradle add to build.gradle:
 
 The following snippet use basic Spring configuration and @EmbeddedMemcached. 
 JMemcachedTestExecutionListener find @EmbeddedMemcached annotation 
-and try to start an embedded memcached server (host 127.0.0.1 and port 11214).
+and try to start an jmemcached server (host 127.0.0.1 and port 11214).
 
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -52,7 +52,7 @@ and try to start an embedded memcached server (host 127.0.0.1 and port 11214).
 @EmbeddedMemcached(host = "127.0.0.1", port = 11214)
 public class EmbeddedMemcachedTest {
     @Test
-    public void shouldNotFindValueInMemcached() {
+    public void shouldSaveValueAndRetrieveItFromMemcached() {
         ...
     }
 }
@@ -62,7 +62,7 @@ public class EmbeddedMemcachedTest {
 
 The following snippet use basic Spring configuration and @EmbeddedMemcached. 
 Default listener JMemcachedTestExecutionListener find @EmbeddedMemcached annotation 
-and try to start an embedded memcached server with default configuration.
+and try to start an jmemcached server with default configuration.
 
 ```groovy
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
